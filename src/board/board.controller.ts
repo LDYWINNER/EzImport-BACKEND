@@ -26,7 +26,7 @@ export class BoardController {
 
   @Get(':id')
   find(@Param('id', ParseIntPipe) id: number) {
-    return `find board by id: ${id}`;
+    return this.boardService.find(id);
   }
 
   @Post()
