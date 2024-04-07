@@ -31,7 +31,7 @@ export class BoardController {
 
   @Post()
   create(@Body(new ValidationPipe()) data: CreateBoardDto) {
-    return `create board with data: ${JSON.stringify(data)}`;
+    return this.boardService.create(data);
   }
 
   @Put(':id')

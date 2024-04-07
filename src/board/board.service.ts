@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Board } from 'src/entity/board.entity';
 import { User } from 'src/entity/user.entity';
 import { Repository } from 'typeorm';
+import { CreateBoardDto } from './dto/create-board.dto';
 
 @Injectable()
 export class BoardService {
@@ -30,5 +31,9 @@ export class BoardService {
     }
 
     return board;
+  }
+
+  async create(data: CreateBoardDto) {
+    return this.boardRepository.save(data);
   }
 }
