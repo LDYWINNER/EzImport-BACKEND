@@ -4,6 +4,7 @@ import { Board } from 'src/entity/board.entity';
 import { User } from 'src/entity/user.entity';
 import { Repository } from 'typeorm';
 import { CreateBoardDto } from './dto/create-board.dto';
+import { UpdateBoardDto } from './dto/update-board.dto';
 
 @Injectable()
 export class BoardService {
@@ -35,5 +36,29 @@ export class BoardService {
 
   async create(data: CreateBoardDto) {
     return this.boardRepository.save(data);
+  }
+
+  async update(id: number, data: UpdateBoardDto) {
+    const board = await this.getBoardById(id);
+
+    if (!board) throw new HttpException('NOT_FOUND', HttpStatus.NOT_FOUND);
+
+    return this.boardRepository.update(id, {
+      ...data,
+    });
+  }
+
+  async delete(id: number) {
+    const board = await this.getBoardById(id);
+
+    if (!board) throw new HttpException('NOT_FOUND', HttpStatus.NOT_FOUND);
+
+    return this.boardRepository.remove(board);
+  }
+
+  async getBoardById(id: number) {
+    return this.boardRepository.findOneBy({
+      id,
+    });
   }
 }

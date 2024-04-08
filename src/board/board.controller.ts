@@ -39,11 +39,11 @@ export class BoardController {
     @Param('id', ParseIntPipe) id: number,
     @Body(new ValidationPipe()) data: UpdateBoardDto,
   ) {
-    return `update board by id: ${id} with data: ${JSON.stringify(data)}`;
+    return this.boardService.update(id, data);
   }
 
   @Delete(':id')
   delete(@Param('id', ParseIntPipe) id: number) {
-    return `delete board by id: ${id}`;
+    return this.boardService.delete(id);
   }
 }
