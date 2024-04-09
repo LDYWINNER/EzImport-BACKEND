@@ -7,12 +7,14 @@ import { User } from 'src/entity/user.entity';
 import { Repository } from 'typeorm';
 import { LoginUserDto } from './dto/login-user.dto';
 import * as jwt from 'jsonwebtoken';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    private readonly configService: ConfigService,
   ) {}
 
   async createUser(data: CreateUserDto) {
@@ -52,8 +54,8 @@ export class UserService {
       name: user.name,
     };
 
-    const accessToken = jwt.sign(payload, 'secret_key', {
-      expiresIn: '1h',
+    const accessToken = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_LIFETIME,
     });
 
     return {

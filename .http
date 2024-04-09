@@ -54,9 +54,9 @@ POST http://localhost:3000/user
 content-type: application/json
 
 {
-    "username": "fastcampus2024",
-    "name": "fastcampusname2",
-    "password": "fastcampuspassword"
+    "username": "seederUser3",
+    "name": "gildong",
+    "password": "hong123456"
 }
 
 ###
@@ -67,8 +67,8 @@ POST http://localhost:3000/user/login
 content-type: application/json
 
 {
-    "username": "fastcampus2024",
-    "password": "fastcampuspassword"
+    "username": "seederUser3",
+    "password": "hong123456"
 }
 
 ###
@@ -79,8 +79,8 @@ POST http://localhost:3000/login
 content-type: application/json
 
 {
-    "username": "fastcampus2024",
-    "password": "fastcampuspassword"
+    "username": "seederUser2",
+    "password": "hong12345"
 }
 
 ###
