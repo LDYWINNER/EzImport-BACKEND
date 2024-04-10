@@ -1,16 +1,18 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Board } from 'src/entity/board.entity';
-import { User } from 'src/entity/user.entity';
-import { Repository } from 'typeorm';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Board } from 'src/entity/board.entity';
 
 @Injectable()
 export class BoardService {
   constructor(
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
     @InjectRepository(Board)
     private boardRepository: Repository<Board>,
   ) {}
@@ -21,15 +23,15 @@ export class BoardService {
 
   async find(id: number) {
     const board = await this.boardRepository.findOne({
-      where: { id },
+      where: {
+        id,
+      },
       relations: {
         user: true,
       },
     });
 
-    if (!board) {
-      throw new HttpException('NotFound', HttpStatus.NOT_FOUND);
-    }
+    if (!board) throw new HttpException('NotFound', HttpStatus.NOT_FOUND);
 
     return board;
   }
@@ -38,20 +40,28 @@ export class BoardService {
     return this.boardRepository.save(data);
   }
 
-  async update(id: number, data: UpdateBoardDto) {
+  async update(userId: number, id: number, data: UpdateBoardDto) {
     const board = await this.getBoardById(id);
 
     if (!board) throw new HttpException('NOT_FOUND', HttpStatus.NOT_FOUND);
+
+    if (userId !== board.userId) {
+      throw new UnauthorizedException();
+    }
 
     return this.boardRepository.update(id, {
       ...data,
     });
   }
 
-  async delete(id: number) {
+  async delete(userId: number, id: number) {
     const board = await this.getBoardById(id);
 
     if (!board) throw new HttpException('NOT_FOUND', HttpStatus.NOT_FOUND);
+
+    if (userId !== board.userId) {
+      throw new UnauthorizedException();
+    }
 
     return this.boardRepository.remove(board);
   }

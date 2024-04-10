@@ -12,7 +12,7 @@ GET http://localhost:3000/board/16
 # 게시글 생성
 POST http://localhost:3000/board
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJmYXN0Y2FtcHVzMjAyNCIsIm5hbWUiOiJmYXN0Y2FtcHVzbmFtZTIiLCJpYXQiOjE2OTA3Mjk2ODIsImV4cCI6MTY5MDczMzI4Mn0.zZ46zzi_UeOrYxPp6nCqi-7QyGBUsiOPqOzQSI3LuKk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZWVkZXJVc2VyMyIsIm5hbWUiOiJnaWxkb25nIiwiaWF0IjoxNzEyNzkwMzg2LCJleHAiOjE3MTM5OTk5ODZ9.RkEQeTxhITDgwxNoTU2unKPW3YiK_gXaO0pUM0JF664
 
 {
     "contents": "새로운 게시글"
@@ -21,20 +21,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hb
 ###
 
 # 게시글 수정
-PUT http://localhost:3000/board/16
+PUT http://localhost:3000/board/1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJmYXN0Y2FtcHVzMjAyNCIsIm5hbWUiOiJmYXN0Y2FtcHVzbmFtZTIiLCJpYXQiOjE2OTA3MTI5NTcsImV4cCI6MTY5MDcxNjU1N30.typANtJn7mCfqCBsKueyH6AwxNr7NdhsYtfjOx6AbVg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZWVkZXJVc2VyMyIsIm5hbWUiOiJnaWxkb25nIiwiaWF0IjoxNzEyNzkwMzg2LCJleHAiOjE3MTM5OTk5ODZ9.RkEQeTxhITDgwxNoTU2unKPW3YiK_gXaO0pUM0JF664
 
 {
-    "contents": "FastCampus New world"
+    "contents": "New world"
 }
 
 ###
 
 # 게시글 삭제
 
-DELETE http://localhost:3000/board/16
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJmYXN0Y2FtcHVzMjAyNCIsIm5hbWUiOiJmYXN0Y2FtcHVzbmFtZTIiLCJpYXQiOjE2OTA3MTI5NTcsImV4cCI6MTY5MDcxNjU1N30.typANtJn7mCfqCBsKueyH6AwxNr7NdhsYtfjOx6AbVg
+DELETE http://localhost:3000/board/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJzZWVkZXJVc2VyMyIsIm5hbWUiOiJnaWxkb25nIiwiaWF0IjoxNzEyNzkwMzg2LCJleHAiOjE3MTM5OTk5ODZ9.RkEQeTxhITDgwxNoTU2unKPW3YiK_gXaO0pUM0JF664
 
 ###
 GET http://localhost:3000
