@@ -27,18 +27,18 @@ export class UserService {
     });
   }
 
-  async getUserByUsername(username: string) {
-    return this.userRepository.findOneBy({
-      username,
-    });
+  async getUserForLogin(username: string) {
+    return this.userRepository
+      .createQueryBuilder('user')
+      .addSelect('user.password') // Explicitly select the password field
+      .where('user.username = :username', { username })
+      .getOne();
   }
 
   async login(data: LoginUserDto) {
     const { username, password } = data;
 
-    const user = await this.userRepository.findOneBy({
-      username,
-    });
+    const user = await this.getUserForLogin(username);
 
     if (!user) throw new HttpException('NOT_FOUND', HttpStatus.NOT_FOUND);
 

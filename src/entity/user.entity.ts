@@ -12,7 +12,7 @@ export class User {
   username: string;
 
   @ApiProperty({ description: '비밀번호' })
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @ApiProperty({ description: '이름' })
